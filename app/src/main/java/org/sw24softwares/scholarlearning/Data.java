@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class Data {
         private Format mFormat;
-        private Vector<Vector<String>> mInformations;
+        private Vector<Vector<String>> mInformations = new Vector<Vector<String>>();
 
         public Data(String line, Format format) {
                 mFormat = format;
