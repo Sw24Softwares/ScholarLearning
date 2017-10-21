@@ -56,6 +56,11 @@ public class Test extends AppCompatActivity {
                                 public void onClick(View view) {
                                         Intent intent = new Intent(Test.this, Result.class);
                                         intent.putExtra("index", index);
+
+                                        Vector<String> questions = new Vector<String>();
+                                        for(int i = 0; i < mQuestions.size(); i++)
+                                                questions.addElement(mQuestions.get(i).getText().toString());
+                                        intent.putExtra("answers", questions.toArray(new String[0]));
                                         
                                         startActivity(intent);
                                 }
