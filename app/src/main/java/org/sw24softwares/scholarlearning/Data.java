@@ -20,4 +20,11 @@ public class Data {
                                 mInformations.lastElement().addElement(words[j]);
                 }
         }
+
+        public Format getFormat() {
+                return mFormat;
+        }
+        public Vector<Vector<String>> getInformations() {
+                return mInformations;
+        }
 }

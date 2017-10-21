@@ -44,4 +44,12 @@ class Loader {
         public int getNumFormats() {
                 return mFormats.size();
         }
+
+        private static Loader mSingleton = null;
+        public static void setSingleton(Loader singleton) {
+                mSingleton = singleton;
+        }
+        public static  Loader getSingleton() {
+                return mSingleton;
+        }
 }

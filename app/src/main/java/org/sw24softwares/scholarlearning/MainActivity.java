@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
 
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity
                 try {
                         reader = new BufferedReader(new InputStreamReader(getAssets().open("verbs.txt"), "UTF-8"));
                         Loader loader = new Loader(reader);
+                        Loader.setSingleton(loader);
                 } catch (IOException e) {
                         System.exit(0);
                 }
@@ -83,8 +85,10 @@ public class MainActivity extends AppCompatActivity
                 // Handle navigation view item clicks here.
                 int id = item.getItemId();
 
+                Intent intent;
                 if (id == R.id.nav_test) {
-                        
+                        intent = new Intent(MainActivity.this, Test.class);
+                        startActivity(intent);
                 } else if (id == R.id.nav_progress) {
 
                 } else if (id == R.id.nav_lesson) {
