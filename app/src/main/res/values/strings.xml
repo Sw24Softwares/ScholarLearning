@@ -8,4 +8,6 @@
     <string name="title_activity_test">Test</string>
 
     <string name="verify">Verify</string>
+    <string name="next">Next</string>
+    <string name="stop">Stop</string>
 </resources>
