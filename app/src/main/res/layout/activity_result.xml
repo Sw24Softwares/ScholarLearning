@@ -25,10 +25,9 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:id="@+id/next_verify"
+        android:id="@+id/result_next"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/result_stop"
         android:text="@string/next"/>
     <Button
         android:layout_width="0dp"

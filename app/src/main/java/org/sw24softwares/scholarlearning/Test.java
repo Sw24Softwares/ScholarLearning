@@ -54,6 +54,7 @@ public class Test extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                        Test.this.finish();
                                         Intent intent = new Intent(Test.this, Result.class);
                                         intent.putExtra("index", index);
 

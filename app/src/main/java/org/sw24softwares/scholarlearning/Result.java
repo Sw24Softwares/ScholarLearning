@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 
+import android.content.Intent;
 import android.widget.RelativeLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,6 +43,21 @@ public class Result extends AppCompatActivity {
                 mFormat = Loader.getSingleton().getData(mIndex).getFormat();
                 for(int i = 0; i < mFormat.getCategories().size(); i++)
                         createAnswer(i,correctAnswer(i,answers.get(i)));
+
+                ((Button)findViewById(R.id.result_stop)).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                        Result.this.finish();
+                                }
+                        });
+                ((Button)findViewById(R.id.result_next)).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                        Result.this.finish();
+                                        Intent intent = new Intent(Result.this, Test.class);
+                                        startActivity(intent);
+                                }
+                        });
         }
         private void createAnswer(int index, Boolean b) {
                 if(mFormat == null || mLayout == null)
