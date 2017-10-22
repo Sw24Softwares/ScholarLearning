@@ -43,8 +43,8 @@ public class Test extends AppCompatActivity {
                         createQuestion(i);
 
                 // Set the given form
-                int given = rand.nextInt(Loader.getSingleton().getData(index).getInformations().size());
-                int givenQuestion = rand.nextInt(Loader.getSingleton().getData(index).getInformations().get(given).size());
+                final int given = rand.nextInt(Loader.getSingleton().getData(index).getInformations().size());
+                final int givenQuestion = rand.nextInt(Loader.getSingleton().getData(index).getInformations().get(given).size());
                 mQuestions.get(given).setText(Loader.getSingleton().getData(index).getInformations().get(given).get(givenQuestion));
                 mQuestions.get(given).setEnabled(false);
                 mQuestions.get(given).setTextColor(getResources().getColor(black));
@@ -57,6 +57,7 @@ public class Test extends AppCompatActivity {
                                         Test.this.finish();
                                         Intent intent = new Intent(Test.this, Result.class);
                                         intent.putExtra("index", index);
+                                        intent.putExtra("given", given);
 
                                         Vector<String> questions = new Vector<String>();
                                         for(int i = 0; i < mQuestions.size(); i++)

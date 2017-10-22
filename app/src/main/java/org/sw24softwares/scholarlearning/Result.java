@@ -36,13 +36,14 @@ public class Result extends AppCompatActivity {
                 mTextsLayout = (LinearLayout) findViewById (R.id.result_texts_layout);
                 
                 mIndex = getIntent().getExtras().getInt("index");
+                final int given = getIntent().getExtras().getInt("given");
 
                 List<String> answers = Arrays.asList(getIntent().getExtras().getStringArray("answers"));
                 
                 // Set edittext
                 mFormat = Loader.getSingleton().getData(mIndex).getFormat();
                 for(int i = 0; i < mFormat.getCategories().size(); i++)
-                        createAnswer(i,correctAnswer(i,answers.get(i)));
+                        createAnswer(i,correctAnswer(i,answers.get(i)), i == given);
 
                 ((Button)findViewById(R.id.result_stop)).setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -59,14 +60,16 @@ public class Result extends AppCompatActivity {
                                 }
                         });
         }
-        private void createAnswer(int index, Boolean b) {
+        private void createAnswer(int index, Boolean right, Boolean given) {
                 if(mFormat == null || mLayout == null)
                         return;
                 
                 TextView answer  = new TextView(this);
                 answer.setText(Loader.getSingleton().getData(mIndex).getInformations().get(index).get(0));
                 answer.setId(index);
-                if(b)
+                if(given)
+                        answer.setTextColor(getResources().getColor(black));
+                else if(right)
                         answer.setTextColor(ContextCompat.getColor(this, R.color.good));
                 else
                         answer.setTextColor(ContextCompat.getColor(this, R.color.bad));
