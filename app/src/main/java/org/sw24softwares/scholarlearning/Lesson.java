@@ -34,6 +34,15 @@ public class Lesson extends AppCompatActivity {
                 // Assumes current activity is the searchable activity
                 searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
                 searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                                @Override
+                                public boolean onQueryTextChange(String query) {
+                                        search(query);
+                                        handleIntent(getIntent());
+                                        return true;
+                                }
+                                public boolean onQueryTextSubmit(String query) {return false;}
+                        });
                 
                 expListView = (ExpandableListView) findViewById(R.id.lesson_list);
                 search(new String());
@@ -58,9 +67,10 @@ public class Lesson extends AppCompatActivity {
                                         if(info.contains(search_word))
                                                 contains = true;
                                         caseData += info;
-                                        if(k < data.getInformations().get(j).size())
+                                        if(k < data.getInformations().get(j).size() -1)
                                                 caseData += ", ";
                                 }
+                                details.add(caseData);
                         }
                         if(contains || search_word == new String()) {
                                 listDataHeader.add(data.getInformations().get(0).get(0));
