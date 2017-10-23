@@ -88,9 +88,12 @@ public class MainActivity extends AppCompatActivity
                 Intent intent;
                 if (id == R.id.nav_test) {
                         intent = new Intent(MainActivity.this, Test.class);
+                        intent.putExtra("total", 0);
+                        intent.putExtra("marks",new int[0]);
                         startActivity(intent);
                 } else if (id == R.id.nav_progress) {
-
+                        intent = new Intent(MainActivity.this, Progress.class);
+                        startActivity(intent);
                 } else if (id == R.id.nav_lesson) {
 
                 }

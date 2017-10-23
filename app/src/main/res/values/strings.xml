@@ -10,4 +10,6 @@
     <string name="verify">Verify</string>
     <string name="next">Next</string>
     <string name="stop">Stop</string>
+
+    <string name="at">at</string>
 </resources>

@@ -58,6 +58,9 @@ public class Test extends AppCompatActivity {
                                         Intent intent = new Intent(Test.this, Result.class);
                                         intent.putExtra("index", index);
                                         intent.putExtra("given", given);
+                                        
+                                        intent.putExtra("total", getIntent().getExtras().getInt("total"));
+                                        intent.putExtra("marks", getIntent().getExtras().getIntArray("marks"));
 
                                         Vector<String> questions = new Vector<String>();
                                         for(int i = 0; i < mQuestions.size(); i++)

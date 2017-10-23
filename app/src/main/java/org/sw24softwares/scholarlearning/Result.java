@@ -9,11 +9,14 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import android.content.Intent;
+import android.content.ContentValues;
 import android.widget.RelativeLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Button;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.Vector;
 import java.util.List;
@@ -28,6 +31,9 @@ public class Result extends AppCompatActivity {
         Vector<TextView> mAnswers = new Vector<TextView>();
         int mIndex = -1;
         
+        int mMarks[] = null;
+        int mTotal = 0;
+        
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -37,6 +43,10 @@ public class Result extends AppCompatActivity {
                 
                 mIndex = getIntent().getExtras().getInt("index");
                 final int given = getIntent().getExtras().getInt("given");
+
+                mTotal = getIntent().getExtras().getInt("total");
+                mMarks = getIntent().getExtras().getIntArray("marks");
+                mMarks = Arrays.copyOf(mMarks, mMarks.length +1);
 
                 List<String> answers = Arrays.asList(getIntent().getExtras().getStringArray("answers"));
                 
@@ -49,6 +59,8 @@ public class Result extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                         Result.this.finish();
+
+                                        saveMark();
                                 }
                         });
                 ((Button)findViewById(R.id.result_next)).setOnClickListener(new View.OnClickListener() {
@@ -56,6 +68,10 @@ public class Result extends AppCompatActivity {
                                 public void onClick(View view) {
                                         Result.this.finish();
                                         Intent intent = new Intent(Result.this, Test.class);
+
+                                        intent.putExtra("total", mTotal + 1);
+                                        intent.putExtra("marks", mMarks);
+
                                         startActivity(intent);
                                 }
                         });
@@ -69,8 +85,10 @@ public class Result extends AppCompatActivity {
                 answer.setId(index);
                 if(given)
                         answer.setTextColor(getResources().getColor(black));
-                else if(right)
+                else if(right) {
                         answer.setTextColor(ContextCompat.getColor(this, R.color.good));
+                        mMarks[mMarks.length-1]++;
+                }
                 else
                         answer.setTextColor(ContextCompat.getColor(this, R.color.bad));
                 mTextsLayout.addView(answer);
@@ -80,5 +98,24 @@ public class Result extends AppCompatActivity {
                 if(Loader.getSingleton().getData(mIndex).getInformations().get(index).indexOf(answer) == -1)
                         return false;
                 return true;
+        }
+        private void saveMark() {
+                DatabaseHelper databaseHelper = new DatabaseHelper(this, "marks");
+                String marks = new String();
+		int totalPercent = 0;
+
+		for(int i = 0; i < mMarks.length; i++) {
+                        marks += String.valueOf(mMarks[i]) + ' ';
+                        totalPercent += mMarks[i];
+		}
+
+		totalPercent = Math.round(totalPercent * 100 / (mMarks.length * 5));
+		int onTwenty = Math.round(totalPercent * 2 / 10);
+
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(DatabaseHelper.COLUMN_1, new SimpleDateFormat("dd/MM/yyyy '" + getString(R.string.at) + "' HH:mm : '" + String.valueOf(totalPercent) + "% - (" + onTwenty + "/20)'").format(new Date()));
+		contentValues.put(DatabaseHelper.COLUMN_2, marks);
+
+                databaseHelper.addData(contentValues);
         }
 }
