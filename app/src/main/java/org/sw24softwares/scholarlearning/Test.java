@@ -35,17 +35,22 @@ public class Test extends AppCompatActivity {
 
                 // Choose verb
                 Random rand = new Random();
-                final int index = rand.nextInt(Loader.getSingleton().getNumDatas());
+                final int index = rand.nextInt(SharedData.mLoadedLessons.get(0).getNumDatas());
 
                 // Set edittext
-                mFormat = Loader.getSingleton().getData(index).getFormat();
+                mFormat = SharedData.mLoadedLessons.get(0).getData(index).getFormat();
                 for(int i = 0; i < mFormat.getCategories().size(); i++)
                         createQuestion(i);
 
                 // Set the given form
-                final int given = rand.nextInt(Loader.getSingleton().getData(index).getInformations().size());
-                final int givenQuestion = rand.nextInt(Loader.getSingleton().getData(index).getInformations().get(given).size());
-                mQuestions.get(given).setText(Loader.getSingleton().getData(index).getInformations().get(given).get(givenQuestion));
+                Vector<Integer> availableForm = new Vector<Integer>();
+                for(int i = 0; i < SharedData.mLoadedLessons.get(0).getData(index).getFormat().getAskingCategories().size(); i++) {
+                        if(SharedData.mLoadedLessons.get(0).getData(index).getFormat().getAskingCategories().get(i))
+                                availableForm.addElement(i);
+                }
+                final int given = availableForm.get(rand.nextInt(availableForm.size()));
+                final int givenQuestion = rand.nextInt(SharedData.mLoadedLessons.get(0).getData(index).getInformations().get(given).size());
+                mQuestions.get(given).setText(SharedData.mLoadedLessons.get(0).getData(index).getInformations().get(given).get(givenQuestion));
                 mQuestions.get(given).setEnabled(false);
                 mQuestions.get(given).setTextColor(getResources().getColor(black));
 

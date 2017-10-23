@@ -51,7 +51,7 @@ public class Result extends AppCompatActivity {
                 List<String> answers = Arrays.asList(getIntent().getExtras().getStringArray("answers"));
                 
                 // Set edittext
-                mFormat = Loader.getSingleton().getData(mIndex).getFormat();
+                mFormat = SharedData.mLoadedLessons.get(0).getData(mIndex).getFormat();
                 for(int i = 0; i < mFormat.getCategories().size(); i++)
                         createAnswer(i,correctAnswer(i,answers.get(i)), i == given);
 
@@ -81,7 +81,7 @@ public class Result extends AppCompatActivity {
                         return;
                 
                 TextView answer  = new TextView(this);
-                answer.setText(Loader.getSingleton().getData(mIndex).getInformations().get(index).get(0));
+                answer.setText(SharedData.mLoadedLessons.get(0).getData(mIndex).getInformations().get(index).get(0));
                 answer.setId(index);
                 if(given)
                         answer.setTextColor(getResources().getColor(black));
@@ -95,7 +95,7 @@ public class Result extends AppCompatActivity {
                 mAnswers.addElement(answer);
         }
         private Boolean correctAnswer(int index, String answer) {
-                if(Loader.getSingleton().getData(mIndex).getInformations().get(index).indexOf(answer) == -1)
+                if(SharedData.mLoadedLessons.get(0).getData(mIndex).getInformations().get(index).indexOf(answer) == -1)
                         return false;
                 return true;
         }

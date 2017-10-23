@@ -39,9 +39,10 @@ public class MainActivity extends AppCompatActivity
 
                 BufferedReader reader = null;
                 try {
-                        reader = new BufferedReader(new InputStreamReader(getAssets().open("verbs.txt"), "UTF-8"));
+                        //                        reader = new BufferedReader(new InputStreamReader(getAssets().open("verbs.txt"), "UTF-8"));
+                        reader = new BufferedReader(new InputStreamReader(getAssets().open("Die_Erziehung.txt"), "UTF-8"));
                         Loader loader = new Loader(reader);
-                        Loader.setSingleton(loader);
+                        SharedData.mLoadedLessons.addElement(loader);
                 } catch (IOException e) {
                         System.exit(0);
                 }

@@ -4,25 +4,27 @@ import java.util.Vector;
 
 public class Format {
         private Vector<String> mCategories = new Vector<String>();
-        private Boolean mAskingCategories[];
+        private Vector<Boolean> mAskingCategories = new Vector<Boolean>();
 
         public Format(String line) {
                 String categories [] = line.split("\\|");
-                mAskingCategories = new Boolean[categories.length];
                 for(int i = 0; i < categories.length; i++) {
                         if(categories[i].trim().isEmpty())
                                 continue;
                         if(categories[i].contains("^")) {
-                                mAskingCategories[i] = false;
+                                mAskingCategories.addElement(false);
                                 categories[i] = categories[i].replace("^","");
                         }
                         else
-                                mAskingCategories[i] = true;
-                        mCategories.addElement(categories[i].trim());
+                                mAskingCategories.addElement(true);
+                        mCategories.addElement(SharedData.cleanString(categories[i].trim()));
                 }
         }
 
         public Vector<String> getCategories() {
                 return mCategories;
+        }
+        public Vector<Boolean> getAskingCategories() {
+                return mAskingCategories;
         }
 }

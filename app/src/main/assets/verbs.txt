@@ -1,4 +1,4 @@
-| infinitif | auxiliaire | prétérit | participe | 3è personne | traduction |
+| infinitif | auxiliaire^ | prétérit | participe | 3è personne | traduction |
 -
 
 bleiben sein blieb geblieben bleibt rester 

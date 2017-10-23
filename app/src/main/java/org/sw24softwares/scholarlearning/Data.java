@@ -17,7 +17,7 @@ public class Data {
                         mInformations.addElement(new Vector<String>());
                         String words [] = informations[i].split("/");
                         for(int j = 0; j < words.length; j++)
-                                mInformations.lastElement().addElement(words[j]);
+                                mInformations.lastElement().addElement(SharedData.cleanString(words[j]));
                 }
         }
 
