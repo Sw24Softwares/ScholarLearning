@@ -10,14 +10,15 @@ public class Data {
                 mFormat = format;
 
                 String informations [] = line.split(" ");
-                if(informations.length != mFormat.getCategories().size())
-                        System.err.println("Trying to format a Data with a non matching String\nline : " + line + "\n");
-
-                for(int i = 0; i < Math.min(informations.length,mFormat.getCategories().size()); i++) {
+                for(int i = 0; i < informations.length; i++) {
+                        if(informations[i].trim().isEmpty())
+                                continue;
                         mInformations.addElement(new Vector<String>());
                         String words [] = informations[i].split("/");
-                        for(int j = 0; j < words.length; j++)
-                                mInformations.lastElement().addElement(SharedData.cleanString(words[j]));
+                        for(int j = 0; j < words.length; j++) {
+                                if(!words[j].trim().isEmpty())
+                                        mInformations.lastElement().addElement(SharedData.cleanString(words[j]));
+                        }
                 }
         }
 

@@ -1,11 +1,46 @@
 | nom | déterminant^ | pluriel^ | traduction |
+| nom | déterminant^ | traduction |
+| expression | traduction |
+| verbe | traduction |
+| adjectif | traduction |
 -
 
-Nesthäkchen das - le_benjamin/le_petit_dernier
-Adoptivkind das er l'enfant_adopté
-Erziehungsurlaub der - le_congé_parental_d'éducation
-Hausfrau die en la_femme_au_foyer
-Au-pair-Mädchen das - la_jeune_fille_au_pair
-Strafe die n la_punition
-Ohrfeige n die la_gifle
-autoritäre_Erziehung eine en une_éductation_anti-autoritaire
+2. zur_Welt_kommen venir_au_monde
+3. geboren_werden naître
+0. Nesthäkchen das - le_benjamin/le_petit_dernier
+3. ein_Kind_adoptieren adopter_un_enfant
+1. das_Adoptivkind er l'enfant_adopté
+3. sich_um_ein_Kind_kümmern s'occuper_d'un_enfant
+3. sich_der_Erziehung_widmen se_consacrer_à_l'éducation
+1. Erziehungsurlaub der le_congé_parental_d'éducation
+0. Hausfrau die en la_femme_au_foyer
+0. Au-pair-Mädchen das - la_jeune_fille_au_pair
+3. aufziehen/großziehen élever
+3. erziehen éduquer
+4. streng sévère
+1. Strenge die la_sévérité
+2. Grenzen_setzen mettre_des_limites
+2. ausschimpfen gronder
+2. tadeln blâmer
+2. bestrafen punir
+0. Strafe die n la_punition
+2. einen_Klaps_geben donner_une_tape
+0. Ohrfeige die n la_gifle
+3. weinen/schluchzen pleure/sangloter
+3. trösten consoler
+3. verwöhnen gâter
+3. bemuttern materner
+3. streicheln caresser
+2. eine_autoritäre_Erziehung une_éducation_anti-autoritaire
+4. nochsichtig indulgent
+1. Nachsicht die l'indulgence
+3. vernachlässigen négliger
+2. sich_selbst_überlassen_sein être_livré_à_soi-même
+4. wohlerzogen bien_élevé
+4. brav sage
+4. schlecht_erzogen mal_élevé
+4. ungezogen qui_se_conduit_mal
+4. gehorsam obéissant
+4. ungehorsam désobéissant
+2. lauter_Dummheiten_machen ne_faire_que_des_bêtises
+2. an_den_Nägeln_kauen se_ronger_les_ongles

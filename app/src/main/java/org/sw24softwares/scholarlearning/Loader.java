@@ -20,8 +20,8 @@ class Loader {
                         while ((line = bufferedReader.readLine()) != null) {
                                 if(line.trim().isEmpty())
                                         continue;
-                                String parts[] = line.split(".");
-                                if(parts.length == 0 || parts.length == 1)
+                                String parts[] = line.split("\\.");
+                                if(!line.contains("."))
                                         mDatas.addElement(new Data(line, mFormats.get(0)));
                                 else
                                         mDatas.addElement(new Data(parts[1], mFormats.get(Integer.parseInt(parts[0]))));
