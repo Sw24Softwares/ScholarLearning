@@ -29,6 +29,7 @@ public class Result extends AppCompatActivity {
         LinearLayout mTextsLayout = null;
         Format mFormat = null;
         Vector<TextView> mAnswers = new Vector<TextView>();
+        Loader mLesson;
         int mIndex = -1;
         
         int mMarks[] = null;
@@ -41,6 +42,8 @@ public class Result extends AppCompatActivity {
                 mLayout = (RelativeLayout) findViewById (R.id.result_relative_layout);
                 mTextsLayout = (LinearLayout) findViewById (R.id.result_texts_layout);
                 
+                mLesson = (Loader)SharedData.mLoadedLessons.get(getIntent().getExtras().getString("lesson"));
+                
                 mIndex = getIntent().getExtras().getInt("index");
                 final int given = getIntent().getExtras().getInt("given");
 
@@ -51,7 +54,7 @@ public class Result extends AppCompatActivity {
                 List<String> answers = Arrays.asList(getIntent().getExtras().getStringArray("answers"));
                 
                 // Set edittext
-                mFormat = SharedData.mLoadedLessons.get(0).getData(mIndex).getFormat();
+                mFormat = mLesson.getData(mIndex).getFormat();
                 for(int i = 0; i < mFormat.getCategories().size(); i++)
                         createAnswer(i,correctAnswer(i,answers.get(i)), i == given);
 
@@ -71,6 +74,7 @@ public class Result extends AppCompatActivity {
 
                                         intent.putExtra("total", mTotal + 1);
                                         intent.putExtra("marks", mMarks);
+                                        intent.putExtra("lesson", getIntent().getExtras().getString("lesson"));
 
                                         startActivity(intent);
                                 }
@@ -81,7 +85,7 @@ public class Result extends AppCompatActivity {
                         return;
                 
                 TextView answer  = new TextView(this);
-                answer.setText(SharedData.mLoadedLessons.get(0).getData(mIndex).getInformations().get(index).get(0));
+                answer.setText(mLesson.getData(mIndex).getInformations().get(index).get(0));
                 answer.setId(index);
                 if(given)
                         answer.setTextColor(getResources().getColor(black));
@@ -95,7 +99,7 @@ public class Result extends AppCompatActivity {
                 mAnswers.addElement(answer);
         }
         private Boolean correctAnswer(int index, String answer) {
-                if(SharedData.mLoadedLessons.get(0).getData(mIndex).getInformations().get(index).indexOf(answer) == -1)
+                if(mLesson.getData(mIndex).getInformations().get(index).indexOf(answer) == -1)
                         return false;
                 return true;
         }

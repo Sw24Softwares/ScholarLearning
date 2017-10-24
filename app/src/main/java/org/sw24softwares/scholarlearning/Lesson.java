@@ -21,11 +21,14 @@ public class Lesson extends AppCompatActivity {
         ExpandableListView expListView;
         List<String> listDataHeader;
         HashMap<String, List<String>> listDataChild;
+        Loader mLesson;
  
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_lesson);
+
+                mLesson = (Loader)SharedData.mLoadedLessons.get(getIntent().getExtras().getString("lesson"));
 
                 //                onSearchRequested();
                 // Get the SearchView and set the searchable configuration
@@ -56,11 +59,11 @@ public class Lesson extends AppCompatActivity {
                 listDataChild = new HashMap<String, List<String>>();
 
                 // Adding child data
-                for(int i = 0 ; i < SharedData.mLoadedLessons.get(0).getNumDatas(); i ++) {
+                for(int i = 0 ; i < mLesson.getNumDatas(); i ++) {
                         Boolean contains = false;
                         List<String> details = new ArrayList<String>();
-                        Data data = SharedData.mLoadedLessons.get(0).getData(i);
-                        for(int j = 0; j < data.getInformations().size(); j++) {
+                        Data data = mLesson.getData(i);
+                        for(int j = 0; j < data.getFormat().getCategories().size(); j++) {
                                 String caseData = data.getFormat().getCategories().get(j) + " : ";
                                 for(int k = 0; k < data.getInformations().get(j).size(); k++) {
                                         String info = data.getInformations().get(j).get(k);

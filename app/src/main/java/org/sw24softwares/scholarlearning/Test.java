@@ -24,6 +24,7 @@ public class Test extends AppCompatActivity {
         LinearLayout mTextsLayout = null;
         Format mFormat = null;
         Vector<EditText> mQuestions = new Vector<EditText>();
+        Loader mLesson = null;
         
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -31,26 +32,27 @@ public class Test extends AppCompatActivity {
                 setContentView(R.layout.activity_test);
 
                 mLayout = (RelativeLayout) findViewById (R.id.test_relativelayout);
-                mTextsLayout = (LinearLayout) findViewById (R.id.test_texts_layout); 
+                mTextsLayout = (LinearLayout) findViewById (R.id.test_texts_layout);
+                mLesson = (Loader)SharedData.mLoadedLessons.get(getIntent().getExtras().getString("lesson"));
 
                 // Choose verb
                 Random rand = new Random();
-                final int index = rand.nextInt(SharedData.mLoadedLessons.get(0).getNumDatas());
+                final int index = rand.nextInt(mLesson.getNumDatas());
 
                 // Set edittext
-                mFormat = SharedData.mLoadedLessons.get(0).getData(index).getFormat();
+                mFormat = mLesson.getData(index).getFormat();
                 for(int i = 0; i < mFormat.getCategories().size(); i++)
                         createQuestion(i);
 
                 // Set the given form
                 Vector<Integer> availableForm = new Vector<Integer>();
-                for(int i = 0; i < SharedData.mLoadedLessons.get(0).getData(index).getFormat().getAskingCategories().size(); i++) {
-                        if(SharedData.mLoadedLessons.get(0).getData(index).getFormat().getAskingCategories().get(i))
+                for(int i = 0; i < mLesson.getData(index).getFormat().getAskingCategories().size(); i++) {
+                        if(mLesson.getData(index).getFormat().getAskingCategories().get(i))
                                 availableForm.addElement(i);
                 }
                 final int given = availableForm.get(rand.nextInt(availableForm.size()));
-                final int givenQuestion = rand.nextInt(SharedData.mLoadedLessons.get(0).getData(index).getInformations().get(given).size());
-                mQuestions.get(given).setText(SharedData.mLoadedLessons.get(0).getData(index).getInformations().get(given).get(givenQuestion));
+                final int givenQuestion = rand.nextInt(mLesson.getData(index).getInformations().get(given).size());
+                mQuestions.get(given).setText(mLesson.getData(index).getInformations().get(given).get(givenQuestion));
                 mQuestions.get(given).setEnabled(false);
                 mQuestions.get(given).setTextColor(getResources().getColor(black));
 
@@ -66,6 +68,8 @@ public class Test extends AppCompatActivity {
                                         
                                         intent.putExtra("total", getIntent().getExtras().getInt("total"));
                                         intent.putExtra("marks", getIntent().getExtras().getIntArray("marks"));
+
+                                        intent.putExtra("lesson", getIntent().getExtras().getString("lesson"));
 
                                         Vector<String> questions = new Vector<String>();
                                         for(int i = 0; i < mQuestions.size(); i++)

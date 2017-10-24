@@ -22,6 +22,7 @@
         <activity android:name=".Test" />
         <activity android:name=".Result" />
         <activity android:name=".Progress" />
+        <activity android:name=".LessonChooser" />
         <activity android:name=".Lesson"
                   android:launchMode="singleTop"> 
           <intent-filter>

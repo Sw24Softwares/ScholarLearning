@@ -39,10 +39,12 @@ public class MainActivity extends AppCompatActivity
 
                 BufferedReader reader = null;
                 try {
-                        //                        reader = new BufferedReader(new InputStreamReader(getAssets().open("verbs.txt"), "UTF-8"));
-                        reader = new BufferedReader(new InputStreamReader(getAssets().open("Die_Erziehung.txt"), "UTF-8"));
+                        reader = new BufferedReader(new InputStreamReader(getAssets().open("verbs.txt"), "UTF-8"));
                         Loader loader = new Loader(reader);
-                        SharedData.mLoadedLessons.addElement(loader);
+                        SharedData.mLoadedLessons.put("Verbs", loader);
+                        reader = new BufferedReader(new InputStreamReader(getAssets().open("Die_Erziehung.txt"), "UTF-8"));
+                        loader = new Loader(reader);
+                        SharedData.mLoadedLessons.put("Die Erziehung", loader);
                 } catch (IOException e) {
                         System.exit(0);
                 }
@@ -88,15 +90,18 @@ public class MainActivity extends AppCompatActivity
 
                 Intent intent;
                 if (id == R.id.nav_test) {
-                        intent = new Intent(MainActivity.this, Test.class);
+                        intent = new Intent(MainActivity.this, LessonChooser.class);
+                        intent.putExtra("toLaunchClass", Test.class.getName());
                         intent.putExtra("total", 0);
                         intent.putExtra("marks",new int[0]);
                         startActivity(intent);
+                
                 } else if (id == R.id.nav_progress) {
                         intent = new Intent(MainActivity.this, Progress.class);
                         startActivity(intent);
                 } else if (id == R.id.nav_lesson) {
-                        intent = new Intent(MainActivity.this, Lesson.class);
+                        intent = new Intent(MainActivity.this, LessonChooser.class);
+                        intent.putExtra("toLaunchClass", Lesson.class.getName());
                         startActivity(intent);
                 }
 
