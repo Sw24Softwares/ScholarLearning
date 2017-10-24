@@ -117,7 +117,7 @@ public class Result extends AppCompatActivity {
 		int onTwenty = Math.round(totalPercent * 2 / 10);
 
 		ContentValues contentValues = new ContentValues();
-		contentValues.put(DatabaseHelper.COLUMN_1, new SimpleDateFormat("dd/MM/yyyy '" + getString(R.string.at) + "' HH:mm : '" + String.valueOf(totalPercent) + "% - (" + onTwenty + "/20)'").format(new Date()));
+		contentValues.put(DatabaseHelper.COLUMN_1, new SimpleDateFormat("'" + getIntent().getExtras().getString("lesson") + " : '" + "dd/MM/yyyy '" + getString(R.string.at) + "' HH:mm : '" + String.valueOf(totalPercent) + "% - (" + onTwenty + "/20)'").format(new Date()));
 		contentValues.put(DatabaseHelper.COLUMN_2, marks);
 
                 databaseHelper.addData(contentValues);

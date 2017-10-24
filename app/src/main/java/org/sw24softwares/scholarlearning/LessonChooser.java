@@ -31,6 +31,7 @@ public class LessonChooser extends ListActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id)  {
                                         try {
+                                                LessonChooser.this.finish();
                                                 Intent intent = new Intent(LessonChooser.this, Class.forName(getIntent().getExtras().getString("toLaunchClass")));
                                                 intent.putExtra("lesson", ((TextView)view).getText().toString());
                                                 intent.putExtras(getIntent().getExtras());
