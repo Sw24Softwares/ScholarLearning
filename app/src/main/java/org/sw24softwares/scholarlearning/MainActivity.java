@@ -14,10 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -37,17 +33,7 @@ public class MainActivity extends AppCompatActivity
                 NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
                 navigationView.setNavigationItemSelectedListener(this);
 
-                BufferedReader reader = null;
-                try {
-                        reader = new BufferedReader(new InputStreamReader(getAssets().open("verbs.txt"), "UTF-8"));
-                        Loader loader = new Loader(reader);
-                        SharedData.mLoadedLessons.put("Verbs", loader);
-                        reader = new BufferedReader(new InputStreamReader(getAssets().open("Die_Erziehung.txt"), "UTF-8"));
-                        loader = new Loader(reader);
-                        SharedData.mLoadedLessons.put("Die Erziehung", loader);
-                } catch (IOException e) {
-                        System.exit(0);
-                }
+                SharedData.loadAllFiles(getAssets());
         }
 
         @Override
