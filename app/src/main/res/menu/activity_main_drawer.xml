@@ -11,5 +11,8 @@
         <item
             android:id="@+id/nav_lesson"
             android:title="Lesson" />
+        <item
+            android:id="@+id/nav_lesson_manager"
+            android:title="Lesson Manager" />
     </group>
 </menu>

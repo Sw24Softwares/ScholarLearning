@@ -11,6 +11,8 @@
     <string name="next">Next</string>
     <string name="stop">Stop</string>
 
+    <string name="create_lesson">Create lesson</string>
+
     <string name="at">at</string>
 
     <string name="search_hint">Rechercher</string>

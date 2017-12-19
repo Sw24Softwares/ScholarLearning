@@ -89,7 +89,11 @@ public class MainActivity extends AppCompatActivity
                         intent = new Intent(MainActivity.this, LessonChooser.class);
                         intent.putExtra("toLaunchClass", Lesson.class.getName());
                         startActivity(intent);
+                } else if (id == R.id.nav_lesson_manager) {
+                        intent = new Intent(MainActivity.this, LessonManager.class);
+                        startActivity(intent);
                 }
+                
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
