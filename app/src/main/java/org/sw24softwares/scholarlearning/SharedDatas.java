@@ -21,11 +21,6 @@ class SharedData {
 
                 try {
                         String[] files = assets.list("Lessons");
-
-                        for(String f1 : files){
-                                Log.v("names",f1);
-                        }
-
                         for(String name : files) {
                                 reader = new BufferedReader(new InputStreamReader(assets.open("Lessons/" + name), "UTF-8"));
                                 loader = new Loader(reader);
